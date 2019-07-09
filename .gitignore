@@ -1,0 +1,49 @@
+
+###> symfony/framework-bundle ###
+/product-create-search/.env.local
+/product-create-search/.env.local.php
+/product-create-search/.env.*.local
+/product-create-search/public/bundles/
+/product-create-search/var/
+/product-create-search/vendor/
+product-create-search/.idea/
+###< symfony/framework-bundle ###
+# Logs
+/product-create-search/var/log/*
+!product-create-search/var/log/.gitkeep
+
+# Parameters
+/product-create-search/app/config/parameters.yml
+/product-create-search/app/config/parameters.ini
+
+# Managed by Composer
+/product-create-search/app/bootstrap.php.cache
+/product-create-search/var/bootstrap.php.cache
+/product-create-search/bin/*
+!product-create-search/bin/console
+!product-create-search/bin/symfony_requirements
+/product-create-search/vendor/
+
+# Assets and user uploads
+/product-create-search/web/bundles/
+/product-create-search/web/uploads/
+
+# PHPUnit
+/product-create-search/app/phpunit.xml
+/product-create-search/phpunit.xml
+
+# Build data
+/product-create-search/build/
+
+# Composer PHAR
+/product-create-search/composer.phar
+
+# Backup entities generated with doctrine:generate:entities command
+**/Entity/*~
+
+# Embedded web-server pid file
+/product-create-search/.web-server-pid
+###> symfony/web-server-bundle ###
+/product-create-search/.web-server-pid
+###< symfony/web-server-bundle ###
+
