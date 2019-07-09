@@ -1,7 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <content url="file://$MODULE_DIR$" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/product-create-search/tests" isTestSource="true" packagePrefix="App\Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/product-create-search/src" isTestSource="false" packagePrefix="App\" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/collections" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/common" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/doctrine-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/doctrine-cache-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/doctrine-migrations-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/migrations" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/orm" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/persistence" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/doctrine/reflection" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/jdorn/sql-formatter" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/ocramius/package-versions" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/ocramius/proxy-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/sensio/framework-extra-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/cache-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/config" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/debug" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/dependency-injection" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/doctrine-bridge" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/dotenv" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/flex" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/framework-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/maker-bundle" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/orm-pack" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/stopwatch" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/var-exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/zendframework/zend-code" />
+      <excludeFolder url="file://$MODULE_DIR$/product-create-search/vendor/zendframework/zend-eventmanager" />
+    </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
