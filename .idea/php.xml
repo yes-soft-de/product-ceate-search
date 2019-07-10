@@ -57,6 +57,15 @@
       <path value="$PROJECT_DIR$/product-create-search/vendor/ocramius/proxy-manager" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/doctrine-bridge" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/orm-pack" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/process" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/web-server-bundle" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/security-http" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/security-guard" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/property-access" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/security-csrf" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/inflector" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/security-core" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/security-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
