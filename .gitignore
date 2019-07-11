@@ -47,3 +47,4 @@ product-create-search/.idea/
 /product-create-search/.web-server-pid
 ###< symfony/web-server-bundle ###
 
+/.idea/workspace.xml
