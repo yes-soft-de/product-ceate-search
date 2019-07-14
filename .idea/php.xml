@@ -73,6 +73,8 @@
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/serializer-pack" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/serializer" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/amphp/amp" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/nmred/kafka-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />

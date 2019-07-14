@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="5d952228-e538-44d1-b1d4-5747863f5152" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/product-ceate-search.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/product-ceate-search.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/symfony2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/symfony2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-create-search/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-create-search/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/config/services.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/src/Entity/Painting.php" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/src/Entity/Painting.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/product-create-search/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/symfony.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,75 +25,65 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+        <entry file="file://$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="49" selection-start-line="49" selection-end-line="49" />
+            <state relative-caret-position="561">
+              <caret line="69" column="30" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="30" />
+              <folding>
+                <element signature="e#34#67#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php">
+        <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1398">
-              <caret line="93" column="74" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="74" />
+            <state relative-caret-position="630">
+              <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
-                <element signature="e#34#58#0#PHP" expanded="true" />
+                <element signature="e#39#58#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-create-search/composer.json">
+        <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
+            <state relative-caret-position="68">
+              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="153">
-                <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              </first_editor>
-              <second_editor />
+        <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1185">
+              <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+              <folding>
+                <element signature="e#37#61#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-create-search/src/Entity/Painting.php">
+        <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysqLI.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-create-search/src/Entity/PaintingInterface.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="33" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/product-create-search/config/services.yaml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="369">
-              <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+            <state relative-caret-position="289">
+              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>$entityManager</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -105,11 +93,15 @@
       <list>
         <option value="$PROJECT_DIR$/product-create-search/.env" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/product-create-search/composer.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/product-create-search/src/Entity/PaintingInterface.php" />
         <option value="$PROJECT_DIR$/product-create-search/config/services.yaml" />
+        <option value="$PROJECT_DIR$/product-create-search/composer.json" />
+        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysqLI.php" />
+        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php" />
+        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php" />
         <option value="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" />
+        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php" />
       </list>
     </option>
   </component>
@@ -186,11 +178,13 @@
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/serializer-pack" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/serializer" />
       <path value="$PROJECT_DIR$/product-create-search/vendor/symfony/property-info" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/amphp/amp" />
+      <path value="$PROJECT_DIR$/product-create-search/vendor/nmred/kafka-php" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="543" />
-    <option name="y" value="28" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="541" />
+    <option name="y" value="26" />
     <option name="width" value="1750" />
     <option name="height" value="1030" />
   </component>
@@ -199,6 +193,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -228,13 +223,26 @@
               <item name="product-ceate-search" type="462c0819:PsiDirectoryNode" />
               <item name="product-create-search" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="BusinessLogic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="product-ceate-search" type="b2602c69:ProjectViewProjectNode" />
+              <item name="product-ceate-search" type="462c0819:PsiDirectoryNode" />
+              <item name="product-create-search" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="product-ceate-search" type="b2602c69:ProjectViewProjectNode" />
+              <item name="product-ceate-search" type="462c0819:PsiDirectoryNode" />
+              <item name="product-create-search" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -277,20 +285,24 @@
       <workItem from="1562696957975" duration="2870000" />
       <workItem from="1562700143174" duration="10661000" />
       <workItem from="1562783127649" duration="13315000" />
+      <workItem from="1562859497107" duration="23061000" />
+      <workItem from="1563061644170" duration="8605000" />
+      <workItem from="1563099476485" duration="3794000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26846000" />
+    <option name="totallyTimeSpent" value="62306000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25637585" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2671141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3297587" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -321,6 +333,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
@@ -331,17 +350,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product-create-search/composer.json">
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/Entity/Painting.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="49" selection-start-line="49" selection-end-line="49" />
+        <state relative-caret-position="255">
+          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -352,26 +364,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product-create-search/src/Entity/Painting.php">
+    <entry file="file://$PROJECT_DIR$/product-create-search/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" column="7" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
+        <state relative-caret-position="484">
+          <caret line="73" column="9" lean-forward="true" selection-start-line="73" selection-start-column="9" selection-end-line="73" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/Repository/PaintingRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/config/packages/doctrine.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/config/packages/doctrine_migrations.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/vendor/symfony/framework-bundle/Controller/ControllerTrait.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1821">
+          <caret line="289" column="23" selection-start-line="289" selection-start-column="23" selection-end-line="289" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/vendor/symfony/framework-bundle/Controller/AbstractController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="43" column="14" selection-start-line="43" selection-start-column="14" selection-end-line="43" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/product-create-search/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="369">
+        <state relative-caret-position="476">
           <caret line="28" column="33" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysqLI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1185">
+          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+          <folding>
+            <element signature="e#37#61#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1398">
-          <caret line="93" column="74" selection-start-line="93" selection-start-column="54" selection-end-line="93" selection-end-column="74" />
+        <state relative-caret-position="561">
+          <caret line="69" column="30" selection-start-line="69" selection-start-column="16" selection-end-line="69" selection-end-column="30" />
           <folding>
-            <element signature="e#34#58#0#PHP" expanded="true" />
+            <element signature="e#34#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="e#39#58#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
