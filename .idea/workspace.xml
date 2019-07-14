@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5d952228-e538-44d1-b1d4-5747863f5152" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/product-ceate-search.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/product-ceate-search.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product-create-search/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/product-create-search/symfony.lock" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,10 +30,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
+            <state relative-caret-position="29">
               <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="e#39#58#0#PHP" expanded="true" />
@@ -57,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1185">
-              <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+            <state relative-caret-position="335">
+              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
               <folding>
                 <element signature="e#37#61#0#PHP" expanded="true" />
               </folding>
@@ -98,10 +92,10 @@
         <option value="$PROJECT_DIR$/product-create-search/config/services.yaml" />
         <option value="$PROJECT_DIR$/product-create-search/composer.json" />
         <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysqLI.php" />
-        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php" />
         <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php" />
         <option value="$PROJECT_DIR$/product-create-search/src/Controller/PaintingController.php" />
         <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php" />
+        <option value="$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php" />
       </list>
     </option>
   </component>
@@ -287,16 +281,15 @@
       <workItem from="1562783127649" duration="13315000" />
       <workItem from="1562859497107" duration="23061000" />
       <workItem from="1563061644170" duration="8605000" />
-      <workItem from="1563099476485" duration="3794000" />
+      <workItem from="1563099476485" duration="4906000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="62306000" />
+    <option name="totallyTimeSpent" value="63418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2671141" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -311,7 +304,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32707775" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32707775" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -398,13 +391,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/product-create-search/config/services.yaml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -416,16 +402,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1185">
-          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
-          <folding>
-            <element signature="e#37#61#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -441,10 +417,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafka.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
+        <state relative-caret-position="29">
           <caret line="41" lean-forward="true" selection-start-line="41" selection-end-line="41" />
           <folding>
             <element signature="e#39#58#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/SendToKafkaI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/product-create-search/src/BusinessLogic/CrudMysql.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="335">
+          <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+          <folding>
+            <element signature="e#37#61#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

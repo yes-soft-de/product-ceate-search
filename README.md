@@ -8,7 +8,7 @@ Right now this project dealing with MySQL only.
 4. Use PostMan to see the result.
 
 ## Full steps for new project:
-1. Require: (annotations-maker-doctrine-security-server).
+1. Require: (annotations-maker-doctrine-security-server-symfony/event-dispatcher-serializer).
 2. Edit .env file for MySQL user name and password and DB name.
 3. Make database.
 4. Create table.

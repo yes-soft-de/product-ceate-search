@@ -6,7 +6,7 @@
 /product-create-search/public/bundles/
 /product-create-search/var/
 /product-create-search/vendor/
-product-create-search/.idea/
+/product-create-search/.idea/
 ###< symfony/framework-bundle ###
 # Logs
 /product-create-search/var/log/*
