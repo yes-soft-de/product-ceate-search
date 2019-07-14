@@ -69,11 +69,4 @@ class CrudMysql implements CrudMysqLI
         $this->entityManager->remove($this->painting);
         $this->entityManager->flush();
     }
-
-    public function getAllPaintingMysql()
-    {
-        //return
-        //$repository = $this->entityManager->getRepository(Painting::class);
-        //$returnPainting = $repository->findAll();
-    }
 }
