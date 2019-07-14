@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-use App\Entity\Painting;
-use App\Entity\PaintingInterface;
-use Doctrine\ORM\EntityManagerInterface;
+use App\BusinessLogic\CrudMysqLI;
+use App\BusinessLogic\SendToKafkaI;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,103 +11,93 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class PaintingController extends AbstractController
 {
-    private  $painting;
-    private $entityManager;
+    private $result;
+    private $crudMysql;
+    private $sendToKafka;
 
-    public function __construct(PaintingInterface $paintingI, EntityManagerInterface $entityManagerInterface)
+    public function __construct(CrudMysqLI $crudMysqli, SendToKafkaI $sendToKafka)
     {
-        $this->painting = $paintingI;
-        $this->entityManager = $entityManagerInterface;
+        $this->crudMysql = $crudMysqli;
+        $this->sendToKafka = $sendToKafka;
     }
 
     /**
-     * @Route("/createPainting", name="createPainting")
+     * @Route("/createPainting", name="createPainting", methods={"post"})
+     * @return Response
+     * @param Request $request
      */
     public function create(Request $request)
     {
-        $name = $request->request->get("name");
-        $image_url = $request->request->get("image_url");
-        $description = $request->request->get("description");
-        $size = $request->get("size");
-        $medium = $request->request->get("medium");
-        $category = $request->request->get("category");
+        //Save to Mysql
+        $this->crudMysql->create($request);
 
-        $this->painting->setName($name)
-                       ->setImageUrl(@$image_url)
-                       ->setDescription($description)
-                       ->setMedium($medium)
-                       ->setCategory($category)
-                       ->setSize($size);
+        //Prepare json
+        $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
+        $this->result = $result;
 
-        $this->entityManager->persist($this->painting);
-        $this->entityManager->flush();
+        //Send to kafka
+        $this->sendToKafka->sendToKafka("New");
 
-        //return
-        //$repository = $this->entityManager->getRepository(Painting::class);
-        //$returnPainting = $repository->findAll();
-        //
-        $result = $this->container->get('serializer')->serialize($this->painting, 'json');
-
+        //Return
         return new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
-
     }
 
     /**
-     * @Route("/updatePainting", name="updatePainting")
+     * @Route("/updatePainting", name="updatePainting", methods={"put"})
+     * @return Response
+     * @param Request $request
      */
     public function update(Request $request)
     {
-        $id = $request->request->get("id");
+        //update in Mysql
+        $this->crudMysql->update($request);
 
-        $this->painting = $this->entityManager->getRepository(Painting::class)->find($id);
+        //Exception
+        $this->notFoundException($request->request->get("id"));
 
-        if(!$this->painting)
-        {
-            throw $this->createNotFoundException(
-                'No painting found for id '.$id
-            );
-        }
+        //Prepare json
+        $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
+        $this->result = $result;
 
-        $name = $request->request->get("name");
-        $image_url = $request->request->get("image_url");
-        $description = $request->request->get("description");
-        $size = $request->get("size");
-        $medium = $request->request->get("medium");
-        $category = $request->request->get("category");
+        //Send to kafka
+        $this->sendToKafka->sendToKafka("Update");
 
-        $this->painting->setName($name)
-            ->setImageUrl(@$image_url)
-            ->setDescription($description)
-            ->setMedium($medium)
-            ->setCategory($category)
-            ->setSize($size);
-
-        $this->entityManager->flush();
-
-        $result = $this->container->get('serializer')->serialize($this->painting, 'json');
-
+        //Return
         return new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
     }
 
     /**
      * @Route("/deletePainting", name="deletePainting", methods={"delete"})
+     * @return Response
+     * @param Request $request
      */
     public function delete(Request $request)
     {
-        $id = $request->request->get("id");
+        //delete from Mysql
+        $this->crudMysql->delete($request);
 
-        $this->painting = $this->entityManager->getRepository(Painting::class)->find($id);
+        //Exception
+        $this->notFoundException($request->request->get("id"));
 
-        if(!$this->painting)
+        //Prepare json
+        $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
+        $this->result = $result;
+
+        //Send to kafka
+        $this->sendToKafka->sendToKafka("Delete");
+
+        //Return
+        return new Response('Deleting painting id: '.$request->request->get("id").' Success',
+            Response::HTTP_OK, ['content-type' => 'application/json']);
+    }
+
+    public function notFoundException($id)
+    {
+        if(!$this->crudMysql->getPainting())
         {
             throw $this->createNotFoundException(
                 'No painting found for id '.$id
             );
         }
-
-        $this->entityManager->remove($this->painting);
-        $this->entityManager->flush();
-
-        return new Response('Deleting painting id: '.$id.' Success', Response::HTTP_OK, ['content-type' => 'application/json']);
     }
 }
