@@ -4,21 +4,30 @@ namespace App\Controller;
 
 use App\BusinessLogic\CrudMysqLI;
 use App\BusinessLogic\SendToKafkaI;
+use App\Events\KafkaEvent;
+use App\Listeners\KafkaListenerI;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
 
 class PaintingController extends AbstractController
 {
     private $result;
     private $crudMysql;
     private $sendToKafka;
+    private $kafkaListener;
+    private $status;
+    private $eventDispatcher;
 
-    public function __construct(CrudMysqLI $crudMysqli, SendToKafkaI $sendToKafka)
+    public function __construct(CrudMysqLI $crudMysqli, SendToKafkaI $sendToKafka, KafkaListenerI $kafkaListenerI, EventDispatcherInterface $eventDispatcher)
     {
         $this->crudMysql = $crudMysqli;
         $this->sendToKafka = $sendToKafka;
+        $this->kafkaListener = $kafkaListenerI;
+        $this->eventDispatcher = $eventDispatcher;
     }
 
     /**
@@ -35,8 +44,9 @@ class PaintingController extends AbstractController
         $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
         $this->result = $result;
 
-        //Send to kafka
-        $this->sendToKafka->sendToKafka("New");
+        //Send event to kafka
+        $this->status = "New";
+        $this->sendEventToKafka();
 
         //Return
         return new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
@@ -52,15 +62,13 @@ class PaintingController extends AbstractController
         //update in Mysql
         $this->crudMysql->update($request);
 
-        //Exception
-        $this->notFoundException($request->request->get("id"));
-
         //Prepare json
         $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
         $this->result = $result;
 
-        //Send to kafka
-        $this->sendToKafka->sendToKafka("Update");
+        //Send event to kafka
+        $this->status = "Updated";
+        $this->sendEventToKafka();
 
         //Return
         return new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
@@ -76,28 +84,23 @@ class PaintingController extends AbstractController
         //delete from Mysql
         $this->crudMysql->delete($request);
 
-        //Exception
-        $this->notFoundException($request->request->get("id"));
-
         //Prepare json
         $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
         $this->result = $result;
 
-        //Send to kafka
-        $this->sendToKafka->sendToKafka("Delete");
+        //Send event to kafka
+        $this->status = "Deleted";
+        $this->sendEventToKafka();
 
         //Return
         return new Response('Deleting painting id: '.$request->request->get("id").' Success',
             Response::HTTP_OK, ['content-type' => 'application/json']);
     }
 
-    public function notFoundException($id)
+    public function sendEventToKafka()
     {
-        if(!$this->crudMysql->getPainting())
-        {
-            throw $this->createNotFoundException(
-                'No painting found for id '.$id
-            );
-        }
+        $this->eventDispatcher->addListener('kafka.event', array($this->kafkaListener, 'onKafkaEvent'));
+        $this->kafkaListener->setStatus($this->status);
+        $this->eventDispatcher->dispatch(KafkaEvent::NAME);
     }
 }

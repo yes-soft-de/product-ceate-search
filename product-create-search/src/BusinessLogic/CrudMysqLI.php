@@ -15,4 +15,6 @@ interface CrudMysqLI
     public function delete(Request $request);
 
     public function getPainting();
+
+    public function getId();
 }

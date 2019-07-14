@@ -38,6 +38,12 @@ class SendToKafka implements SendToKafkaI
             $json = $this->serializer->serialize($this->crudMysql->getPainting(), 'json');
             $arr = json_decode($json, TRUE);
             $arr["status"] = $this->status;
+
+            if ($arr["status"] == "Deleted")
+            {
+                $arr["id"] = (int)$this->crudMysql->getId();
+            }
+
             $json = $this->serializer->serialize($arr, 'json');
 
             return [
@@ -47,14 +53,6 @@ class SendToKafka implements SendToKafkaI
                 ],
             ];
         });
-
-        /*$producer->success(function ($result): void {
-            var_dump($result);
-        });
-
-        $producer->error(function ($errorCode): void {
-            var_dump($errorCode);
-        });*/
 
         $producer->send(true);
     }

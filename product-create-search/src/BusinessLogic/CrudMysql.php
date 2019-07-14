@@ -5,12 +5,14 @@ namespace App\BusinessLogic;
 use App\Entity\Painting;
 use App\Entity\PaintingInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\Integer;
 use Symfony\Component\HttpFoundation\Request;
 
 class CrudMysql implements CrudMysqLI
 {
     private $painting;
     private $entityManager;
+    private $id;
 
     public function __construct(PaintingInterface $paintingI, EntityManagerInterface $entityManagerInterface)
     {
@@ -63,10 +65,16 @@ class CrudMysql implements CrudMysqLI
     public function delete(Request $request)
     {
         $id = $request->request->get("id");
+        $this->id = $id;
 
         $this->painting = $this->entityManager->getRepository(Painting::class)->find($id);
 
         $this->entityManager->remove($this->painting);
         $this->entityManager->flush();
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 }
