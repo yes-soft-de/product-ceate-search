@@ -1,0 +1,24 @@
+<div id="small-list-container" class="container-fluid">
+  <div class="col-3 p-3" *ngFor="let product of productList">
+    <mdb-card>
+      <!--Card image-->
+      <a href="{{product.image_url}}">
+        <mdb-card-img src="{{product.image_url}}" alt="Card image cap"></mdb-card-img>
+      </a>
+      <!--Card content-->
+      <mdb-card-body>
+
+        <!--Title-->
+        <mdb-card-title>
+          <h4>{{product.name}}</h4>
+        </mdb-card-title>
+
+        <!--Text-->
+        <mdb-card-text>
+          {{product.description}}
+        </mdb-card-text>
+
+      </mdb-card-body>
+    </mdb-card>
+  </div>
+</div>

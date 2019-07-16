@@ -1,0 +1,12 @@
+<div class="row p-3 list-item-details" *ngFor="let product of productList">
+  <a class="list-item-details-image col-3" href="{{product.image_url}}">
+    <img class="flex-center" src="{{product.image_url}}">
+  </a>
+  <div class="col-9">
+    <h3 class="col-12">{{product.name}}</h3>
+    <p class="col-12">{{product.description}}</p>
+    <button type="button" mdbBtn color="dark" href="#" mdbWavesEffect>More</button>
+  </div>
+
+
+</div>

@@ -1,0 +1,22 @@
+<div class="row container align-items-center">
+  <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+    <button mdbBtn type="button" color="unique" size="lg" class="waves-light" mdbWavesEffect (click)="layout = 1">
+      Cards
+    </button>
+    <button mdbBtn type="button" color="unique" size="lg" class="waves-light" mdbWavesEffect (click)="layout = 0">
+      Details
+    </button>
+  </div>
+</div>
+<div [ngSwitch]="layout">
+  <div *ngSwitchCase="'0'">
+    <app-list-details></app-list-details>
+  </div>
+  <div *ngSwitchCase="'1'">
+    <app-list-small></app-list-small>
+  </div>
+  <div *ngSwitchDefault>
+    <h3>Default :(</h3>
+  </div>
+</div>
+
