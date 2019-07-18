@@ -11,8 +11,8 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 export class ProductsService {
-  configUrl = 'http://127.0.0.1:8000/painting/search/latest';
-  serverUrl = 'http://127.0.0.1:8000/createPainting';
+  configUrl = 'http://localhost:8000/painting/search/latest';
+  serverUrl = 'http://localhost:8000/createPainting';
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
