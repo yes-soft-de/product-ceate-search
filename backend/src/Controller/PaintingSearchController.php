@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,22 +14,15 @@ class PaintingSearchController extends AbstractController
     /**
      * @Route("/painting/search", name="painting_search")
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request) {
         if (0 === strpos($request->headers->get('Content-Type'), 'application/json')) {
-
             // Create Elastic Search Client
             $client = ClientBuilder::create()->build();
-
             // Allocate JSON Object
             $data = json_decode($request->getContent(), true);
-
-             $request->request->replace(is_array($data) ? $data : array());
-
+            $request->request->replace(is_array($data) ? $data : array());
             // region Should Constructions
-            $should = [
-
-            ];
+            $should = [];
             $keywords = explode(' ', $data["query"]);
             foreach ($keywords as $value) {
                 $valueMatch = ['match' => [
@@ -37,8 +31,7 @@ class PaintingSearchController extends AbstractController
                 array_push($should, $valueMatch);
             }
             // endregion
-
-             $params = [
+            $params = [
                 'index' => 'yes',
                 'body' => [
                     'query' => [
@@ -51,27 +44,22 @@ class PaintingSearchController extends AbstractController
                 ]
             ];
             $response = $client->search($params);
-
             $resultData = [];
-
             foreach ($response['hits']['hits'] as $node) {
                 $jsonObject = json_decode($node['_source']['message']);
                 array_push($resultData, $jsonObject);
             }
-            
             return $this->json([
-                 $resultData
+                    "data" => $resultData
                 ]
             );
-        }
-        else {
+        } else {
             return $this->json([
-                    "msg" => "Welcome!"
+                    "msg" => "Welcome To GitHub!"
                 ]
             );
         }
     }
-
     /**
      * @Route("/painting/search/latest", name="painting_search")
      */
@@ -79,37 +67,27 @@ class PaintingSearchController extends AbstractController
     {
         // Create Elastic Search Client
         $client = ClientBuilder::create()->build();
-
         $params = [
-            'index' => 'yes_new',
+            'index' => 'yes_final',
             'body' => [
                 'query' => [
                     'match_all' => new \stdClass()
                 ]
             ]
         ];
-        $response = $client->search($params);
-
-        $fullJson = '[';
-        $start = true;
-        foreach ($response['hits']['hits'] as $node) {
-            $str = $node['_source']['message'];
-            if ($start){
-                $fullJson = "$fullJson$str";
-                $start = false;
-            } else {
-                $fullJson = "$fullJson,$str";
-            }
+        // This gives the whole search result
+        $elasticSearchResult = $client->search($params);
+        // This is done for cost minimization
+        $itemsArray = [];
+        foreach ($elasticSearchResult['hits']['hits'] as $item) {
+            array_push($itemsArray, $item['_source']);
         }
-        $fullJson = "$fullJson]";
-
-        $string = preg_replace('/[\x00-\x1F\x7F]/u', '', $fullJson);
-        $myResponse = $this->json([
-                'data' => json_decode( $string, true)
-            ]
-            , 200);
-        $myResponse->headers->set('Access-Control-Allow-Origin', '*');
-        $myResponse->headers->set('Content-Type', 'application/json');
-        return $myResponse;
+        $response = new Response($this->json([
+            "data" => $itemsArray
+        ]), Response::HTTP_OK);
+        $response->headers->set('Content-Type', 'application/json');
+        // Allow all Websites
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 }

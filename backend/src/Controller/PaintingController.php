@@ -87,7 +87,8 @@ class PaintingController extends AbstractController
         $this->crudMysql->delete($request);
 
         //Prepare json
-        $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
+        $result = json_encode($this->crudMysql->getPainting());
+        // $result = $this->container->get('serializer')->serialize($this->crudMysql->getPainting(), 'json');
         $this->result = $result;
 
         //Send event to kafka
