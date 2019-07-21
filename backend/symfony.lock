@@ -2,6 +2,15 @@
     "amphp/amp": {
         "version": "v1.2.2"
     },
+    "cakephp/core": {
+        "version": "3.8.1"
+    },
+    "cakephp/utility": {
+        "version": "3.8.1"
+    },
+    "daverandom/exceptional-json": {
+        "version": "v1.0.4"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -84,6 +93,9 @@
     "elasticsearch/elasticsearch": {
         "version": "v7.1.1"
     },
+    "evenement/evenement": {
+        "version": "v3.0.1"
+    },
     "guzzlehttp/ringphp": {
         "version": "1.1.1"
     },
@@ -132,11 +144,41 @@
     "psr/container": {
         "version": "1.0.0"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/log": {
         "version": "1.1.0"
     },
+    "react/cache": {
+        "version": "v1.0.0"
+    },
+    "react/dns": {
+        "version": "v1.1.0"
+    },
+    "react/event-loop": {
+        "version": "v1.1.0"
+    },
+    "react/http": {
+        "version": "v0.8.4"
+    },
     "react/promise": {
         "version": "v2.7.1"
+    },
+    "react/promise-stream": {
+        "version": "v1.2.0"
+    },
+    "react/promise-timer": {
+        "version": "v1.5.1"
+    },
+    "react/socket": {
+        "version": "v1.3.0"
+    },
+    "react/stream": {
+        "version": "v1.1.0"
+    },
+    "ringcentral/psr7": {
+        "version": "1.2.2"
     },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
@@ -323,6 +365,22 @@
     "symfony/stopwatch": {
         "version": "v4.3.2"
     },
+    "symfony/translation": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "2ad9d2545bce8ca1a863e50e92141f0b9d87ffcd"
+        },
+        "files": [
+            "./config/packages/translation.yaml",
+            "./translations/.gitignore"
+        ]
+    },
+    "symfony/translation-contracts": {
+        "version": "v1.1.5"
+    },
     "symfony/var-exporter": {
         "version": "v4.3.2"
     },
@@ -340,6 +398,12 @@
     },
     "webmozart/assert": {
         "version": "1.4.0"
+    },
+    "wyrihaximus/json-psr7": {
+        "version": "1.0.0"
+    },
+    "wyrihaximus/json-utilities": {
+        "version": "1.0.0"
     },
     "zendframework/zend-code": {
         "version": "3.3.1"

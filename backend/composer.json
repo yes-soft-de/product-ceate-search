@@ -19,8 +19,10 @@
         "symfony/orm-pack": "^1.0",
         "symfony/security-bundle": "4.3.*",
         "symfony/serializer-pack": "^1.0",
+        "symfony/translation": "4.3.*",
         "symfony/web-server-bundle": "4.3.*",
-        "symfony/yaml": "4.3.*"
+        "symfony/yaml": "4.3.*",
+        "wyrihaximus/json-psr7": "^1.0"
     },
     "require-dev": {
     },
