@@ -1,0 +1,86 @@
+<!-- BIG FREAKING INFO
+  While This is Not Preferred, Creating View Child is Not within
+  my expertise right now, until later when i get that expertise
+  i will change that.
+-->
+<!-- region Controller Section -->
+<div id="list-controller" class="d-flex align-items-center">
+  <div class="input-group md-form form-sm form-1 pl-0">
+    <div class="input-group-prepend">
+      <span class="input-group-text cyan lighten-2" id="basic-text1"><i class="fas fa-search text-white"
+          aria-hidden="true"></i></span>
+    </div>
+    <input class="form-control my-0 py-1" [(ngModel)]="name" (keyup)="search()" type="text" placeholder="Search" aria-label="Search">
+  </div>
+  <div class="btn-group" mdbDropdown>
+    <button mdbDropdownToggle type="button" mdbBtn color="primary" size="lg" class="dropdown-toggle waves-light" mdbWavesEffect>Size Filter</button>
+    <button type="button" mdbBtn color="red" size="lg" class="waves-light" mdbWavesEffect (click)="sortItemsByPrice()">Sort By Name</button>
+    <div class="dropdown-menu dropdown-primary">
+      <div *ngFor="let item of dropdownList">
+        <a class="dropdown-item" (click)="filterList(item)">{{item}}</a>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group btn-group-lg" role="group" aria-label="Basic example">
+    <button mdbBtn type="button" color="unique" size="lg" class="waves-light" mdbWavesEffect (click)="setLayout(1)">
+      Cards
+    </button>
+    <button mdbBtn type="button" color="unique" size="lg" class="waves-light" mdbWavesEffect (click)="setLayout(0)">Details</button>
+  </div>
+  </div>
+  <!-- endregion Controller Section -->
+  
+  <!-- region Views Section -->
+  <div [ngSwitch]="layout">
+    <!-- region Option 0: Product By Details -->
+    <div *ngSwitchCase="0">
+      <!-- Show The List in Details Layout -->
+      <div class="row p-3 list-item-details" *ngFor="let product of activeProductList">
+        <a class="list-item-details-image col-3" href="{{product.image_url}}">
+          <img class="flex-center" src="{{product.image_url}}">
+        </a>ng g
+        <div class="col-9">
+          <h3 class="col-12">{{product.name}}</h3>
+          <p class="col-12">{{product.description}}</p>
+          <button type="button" mdbBtn color="dark" href="#" mdbWavesEffect>More</button>
+        </div>
+      </div>
+    </div>
+    <!-- endregion -->
+  
+    <!-- region Option 1: Products By Cards -->
+    <div *ngSwitchCase="1">
+      <!-- Cards Layouts -->
+      <div id="small-list-container" class="row">
+        <div class="col-3 p-3" *ngFor="let product of activeProductList">
+          <mdb-card>
+            <!--Card image-->
+            <a href="{{product.image_url}}">
+              <mdb-card-img src="{{product.image_url}}" alt="Card image cap"></mdb-card-img>
+            </a>
+            <!--Card content-->
+            <mdb-card-body>
+              <!--Title-->
+              <mdb-card-title>
+                <h4>{{product.name}}</h4>
+              </mdb-card-title>
+              <!--Text-->
+              <mdb-card-text>
+                {{product.description}}
+              </mdb-card-text>
+              <a href="#" mdbBtn color="primary" mdbWavesEffect routerLink="/painting/{{product.id}}">More...</a>
+            </mdb-card-body>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+    <!-- endregion -->
+  
+    <!-- region Option 2: Default means BAD -->
+    <div *ngSwitchDefault>
+      <h3>Default :(</h3>
+    </div>
+    <!-- endregion -->
+  </div>
+  <!-- endregion Views Section -->
+  

@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center">
+    <div class="d-block col-6">
+      <!-- Default form register -->
+      // #myform : the name of my form that use inside component
+      <form class="text-center border border-light p-5 align-self-center" (ngSubmit)="submitPainting(myform)" #myform="ngForm">
+  
+        <p class="h4 mb-4">Add Painting</p>
+  
+        <!-- E-mail -->
+        form.value.paintingName    //this without ngModel will not work
+        <input type="text" id="paintingName" name="paintingName" class="form-control mb-4" placeholder="Painting Name" ngModel >
+        <input type="text" id="artistName" name="artistName" class="form-control mb-4" placeholder="Artist Name" ngModel >
+        <input type="url" id="imgUrl" name="imgUrl" class="form-control mb-4" placeholder="Image Url" ngModel >
+        <input type="text" id="size" name="size" class="form-control mb-4" placeholder="Image Size" ngModel >
+        <input type="text" id="medium" name="medium" class="form-control mb-4" placeholder="Medium" ngModel >
+        <input type="text" id="style" name="style" class="form-control mb-4" placeholder="Style" ngModel >
+  
+        <div class="md-form">
+          <textarea type="text" id="materialContactFormMessage" class="form-control md-textarea" mdbInput ngModel name="description"></textarea>
+          <label for="materialContactFormMessage">Message</label>
+        </div>
+        <!-- Sign up button -->
+        <button mdbBtn color="info" block="true" class="my-4" (ngSubmit)="submitPainting(myform)" type="submit">Add
+          the Painting
+        </button>
+  
+      </form>
+      <!-- Default form register -->
+    </div>
+  </div>
+  
