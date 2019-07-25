@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 interface CrudInterface
 {
-    public function getSetData(Request $request);
+    public function getSetData(Request $request, $panting);
 
     public function create(Request $request);
 

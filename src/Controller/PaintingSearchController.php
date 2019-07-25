@@ -5,13 +5,12 @@ namespace App\Controller;
 use App\Manager\ElasticSearchQueryManager;
 use App\Mapper\ElasticQueryMapper;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use Elasticsearch\ClientBuilder;
 
-class PaintingSearchController extends AbstractController
+class PaintingSearchController extends BaseController
 {
     /**
      * @Route("/painting/search", name="painting_search")
