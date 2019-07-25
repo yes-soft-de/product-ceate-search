@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Service;
+namespace App\Manager;
 
 use App\Entity\ExtraDataInterface;
 use App\Repository\CrudInterface;

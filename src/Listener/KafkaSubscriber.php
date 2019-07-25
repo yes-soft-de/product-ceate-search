@@ -3,8 +3,8 @@
 
 namespace App\Listener;
 
-use App\Service\SendToKafkaInterface;
 use App\Event\KafkaEvent;
+use App\Manager\SendToKafkaInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 class KafkaSubscriber implements EventSubscriberInterface

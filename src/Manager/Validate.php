@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Service;
+namespace App\Manager;
 
 use App\Entity\Painting;
+use App\Enum\RequestType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,36 @@ class Validate implements ValidateInterface
     public function __construct(ValidatorInterface $validator, EntityManagerInterface $entityManagerInterface)
     {
         $this->validator = $validator;
-        $this->entityManager= $entityManagerInterface;
+        $this->entityManager = $entityManagerInterface;
+    }
+
+    public function requestValidator(Request $request, $requestType)
+    {
+        $method = $request->getMethod();
+        if ($requestType === RequestType::$REQUEST_CREATE) {
+            if ($method === 'POST')
+                return true;
+            else {
+                return "Method Not Allowed (Allow: POST)";
+            }
+        }
+
+        if ($requestType === RequestType::$REQUEST_UPDATE) {
+            if ($method === 'PUT')
+                return true;
+            else
+                return "Method Not Allowed (Allow: PUT)";
+        }
+
+        if ($requestType === RequestType::$REQUEST_DELETE) {
+            if ($method === "DELETE")
+                return true;
+            else
+                return "Method Not Allowed (Allow: DELETE)";
+        }
+        else {
+            return "This API Doesn't Support This Request Type";
+        }
     }
 
     public function pantingValidator(Request $request, $type)
@@ -58,12 +88,10 @@ class Validate implements ValidateInterface
             ]
         ]);
 
-        if ($type == 'create')
-        {
+        if ($type == 'create') {
             unset($constraints->fields['id']);
         }
-        if ($type == "delete")
-        {
+        if ($type == "delete") {
             unset($constraints->fields['name']);
             unset($constraints->fields['image_url']);
             unset($constraints->fields['description']);
@@ -74,14 +102,12 @@ class Validate implements ValidateInterface
 
         $violations = $this->validator->validate($input, $constraints);
 
-        if (count($violations) > 0)
-        {
+        if (count($violations) > 0) {
             $accessor = PropertyAccess::createPropertyAccessor();
 
             $errorMessages = [];
 
-            foreach ($violations as $violation)
-            {
+            foreach ($violations as $violation) {
                 $accessor->setValue($errorMessages,
                     $violation->getPropertyPath(),
                     $violation->getMessage());
@@ -92,12 +118,11 @@ class Validate implements ValidateInterface
             return $result;
         }
 
-        if ($type != "create")
-        {
-            if(!$this->entityManager->getRepository(Painting::class)->find($input["id"]))
-            {
+        if ($type != "create") {
+            if (!$this->entityManager->getRepository(Painting::class)->find($input["id"])) {
                 return "No panting with this id!";
             }
         }
     }
+
 }
