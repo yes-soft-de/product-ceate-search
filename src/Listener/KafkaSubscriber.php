@@ -19,12 +19,12 @@ class KafkaSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KafkaEvent::NAME => "onKafkaEvent"
+            KafkaEvent::class => "onKafkaEvent"
         ];
     }
 
-    public function onKafkaEvent()
+    public function onKafkaEvent(KafkaEvent $event)
     {
-       $this->sendToKafka->sendToKafka();
+       $this->sendToKafka->sendToKafka($event->getTopicName(), $event->getStatus());
     }
 }

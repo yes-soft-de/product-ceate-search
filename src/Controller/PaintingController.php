@@ -4,28 +4,25 @@ namespace App\Controller;
 
 use App\Repository\CrudInterface;
 use App\Event\KafkaEvent;
-use App\Event\KafkaEventInterface;
 use App\Service\ValidateInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class PaintingController extends AbstractController
+class PaintingController extends BaseController
 {
     private $crudMysql;
     private $eventDispatcher;
-    private $kafkaEvent;
     private $validate;
     //private $paintingMapper;
 
-    public function __construct(CrudInterface $crudMysqli, EventDispatcherInterface $eventDispatcher, KafkaEventInterface $kafkaEvent, ValidateInterface $validate)
+    public function __construct(CrudInterface $crudMysqli, EventDispatcherInterface $eventDispatcher, ValidateInterface $validate)
     {
         $this->crudMysql = $crudMysqli;
         $this->eventDispatcher = $eventDispatcher;
-        $this->kafkaEvent = $kafkaEvent;
         $this->validate = $validate;
         //$this->paintingMapper = new PaintingMapper();
     }
@@ -43,15 +40,26 @@ class PaintingController extends AbstractController
         // TODO: Create Manager to Handle this work if Validation was OK
         // This Should be in a separate Service
 
+        $validateResult = $this->validate->pantingValidator($request, 'create');
+        if (!empty($validateResult))
+        {
+            $resultResponse = new Response($validateResult, Response::HTTP_OK, ['content-type' => 'application/json']);
+            $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
+            return $resultResponse;
+        }
         // Save to Mysql
         $this->crudMysql->create($request);
 
         //Event (Kafka)
-        //$this->dispatch("yes", "New");
+        $this->dispatch("yes", "New");
 
         //Return
         $result = "Create panting, success.";
-        $resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'text/plain']);
+        //$resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'text/plain']);
+        $resultResponse = new JsonResponse([
+            "status_code" => 200,
+            "msg" => $result
+        ]);
         $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
         return $resultResponse;
     }
@@ -63,7 +71,7 @@ class PaintingController extends AbstractController
      */
     public function update(Request $request)
     {
-        $validateResult = $this->validate->pantingValidator($request);
+        $validateResult = $this->validate->pantingValidator($request, 'update');
 
         if (!empty($validateResult))
         {
@@ -72,15 +80,19 @@ class PaintingController extends AbstractController
             return $resultResponse;
         }
 
-        //Save to Mysql
+        //update Mysql
         $this->crudMysql->update($request);
 
         //Event (Kafka)
-        //$this->dispatch("yes", "Updated");
+        $this->dispatch("yes", "Updated");
 
         //Return
         $result = "Update panting, success.";
-        $resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
+        //$resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
+        $resultResponse = new JsonResponse([
+            "status_code" => 200,
+            "msg" => $result
+        ]);
         $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
         return $resultResponse;
     }
@@ -92,7 +104,7 @@ class PaintingController extends AbstractController
      */
     public function delete(Request $request)
     {
-        $validateResult = $this->validate->pantingValidator($request);
+        $validateResult = $this->validate->pantingValidator($request, "delete");
 
         if (!empty($validateResult))
         {
@@ -105,21 +117,24 @@ class PaintingController extends AbstractController
         $this->crudMysql->delete($request);
 
         //Event (Kafka)
-        //$this->dispatch("yes", "Deleted");
+        $this->dispatch("yes", "Deleted");
 
         //Return
         $data = json_decode($request->getContent(), true);
         $id = $data["id"];
-        $resultResponse = new Response('Deleting painting id: '.$id.' Success',
-            Response::HTTP_OK, ['content-type' => 'application/json']);
+        $result = 'Deleting painting id: '.$id.' Success';
+        // $resultResponse = new Response('Deleting painting id: '.$id.' Success',
+        //   Response::HTTP_OK, ['content-type' => 'application/json']);
+        $resultResponse = new JsonResponse([
+            "status_code" => 200,
+            "msg" => $result
+        ]);
         $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
         return $resultResponse;
     }
 
     public function dispatch($topicName, $status)
     {
-        $this->kafkaEvent->setTopicName($topicName);
-        $this->kafkaEvent->setStatus($status);
-        $this->eventDispatcher->dispatch(KafkaEvent::NAME);
+        $this->eventDispatcher->dispatch(new KafkaEvent($topicName, $status));
     }
 }

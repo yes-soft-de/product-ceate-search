@@ -30,6 +30,9 @@ services:
 
     App\Event\:
         resource: '../src/Event'
+        arguments:
+            $status: "status"
+            $topicName: "topicName"
 
     App\Repository\:
         resource: '../src/Repository'

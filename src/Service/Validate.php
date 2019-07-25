@@ -8,6 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\Validator\Constraints\Required;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class Validate implements ValidateInterface
@@ -21,47 +22,82 @@ class Validate implements ValidateInterface
         $this->entityManager= $entityManagerInterface;
     }
 
-    public function pantingValidator(Request $request)
+    public function pantingValidator(Request $request, $type)
     {
-        $data = json_decode($request->getContent(), true);
+        $input = json_decode($request->getContent(), true);
 
-        if (isset($data["id"]))
+        $constraints = new Assert\Collection([
+
+            'id' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'name' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'image_url' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'description' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'size' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'medium' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ],
+            'category' => [
+                new Required(),
+                new Assert\NotBlank(),
+            ]
+        ]);
+
+        if ($type == 'create')
         {
-            $id = $data["id"];
-            $input = ['id' => $id];
+            unset($constraints->fields['id']);
+        }
+        if ($type == "delete")
+        {
+            unset($constraints->fields['name']);
+            unset($constraints->fields['image_url']);
+            unset($constraints->fields['description']);
+            unset($constraints->fields['size']);
+            unset($constraints->fields['medium']);
+            unset($constraints->fields['category']);
+        }
 
-            $constraints = new Assert\Collection([
-                'id' => new Assert\NotBlank
-            ]);
+        $violations = $this->validator->validate($input, $constraints);
 
-            $violations = $this->validator->validate($input, $constraints);
+        if (count($violations) > 0)
+        {
+            $accessor = PropertyAccess::createPropertyAccessor();
 
-            if (count($violations) > 0)
+            $errorMessages = [];
+
+            foreach ($violations as $violation)
             {
-                $accessor = PropertyAccess::createPropertyAccessor();
-
-                $errorMessages = [];
-
-                foreach ($violations as $violation)
-                {
-                    $accessor->setValue($errorMessages,
-                        $violation->getPropertyPath(),
-                        $violation->getMessage());
-                }
-
-                $result = json_encode($errorMessages);
-
-                return $result;
+                $accessor->setValue($errorMessages,
+                    $violation->getPropertyPath(),
+                    $violation->getMessage());
             }
 
-            if(!$this->entityManager->getRepository(Painting::class)->find($id))
+            $result = json_encode($errorMessages);
+
+            return $result;
+        }
+
+        if ($type != "create")
+        {
+            if(!$this->entityManager->getRepository(Painting::class)->find($input["id"]))
             {
                 return "No panting with this id!";
             }
-        }
-        else
-        {
-            return "id, is not in the request!";
         }
     }
 }

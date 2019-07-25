@@ -3,22 +3,22 @@
 
 namespace App\Event;
 
-use App\Service\SendToKafkaInterface;
-use App\Entity\ExtraDataInterface;
 use Symfony\Contracts\EventDispatcher\Event;
 
-class KafkaEvent extends Event implements KafkaEventInterface
+class KafkaEvent extends Event
 {
-    const NAME = 'kafka.event';
-    private $extraData;
     private $status;
     private $topicName;
 
-    public function __construct(ExtraDataInterface $extraData)
+    /**
+     * KafkaEvent constructor.
+     * @param string $status
+     * @param string $topicName
+     */
+    public function __construct(string $topicName, string $status)
     {
-        $this->extraData = $extraData;
-        $this->status = $extraData->getStatus();
-        $this->topicName = $extraData->getTopicName();
+        $this->status = $status;
+        $this->topicName = $topicName;
     }
 
     public function getStatus()
@@ -28,7 +28,7 @@ class KafkaEvent extends Event implements KafkaEventInterface
 
     public function setStatus($status)
     {
-        $this->extraData->setStatus($status);
+        $this->status = $status;
     }
 
     public function getTopicName()
@@ -38,6 +38,6 @@ class KafkaEvent extends Event implements KafkaEventInterface
 
     public function setTopicName($topicName): void
     {
-        $this->extraData->setTopicName($topicName);
+        $this->topicName = $topicName;
     }
 }

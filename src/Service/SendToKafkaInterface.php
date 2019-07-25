@@ -4,5 +4,5 @@ namespace App\Service;
 
 interface SendToKafkaInterface
 {
-    public function sendToKafka();
+    public function sendToKafka($topicName, $status);
 }

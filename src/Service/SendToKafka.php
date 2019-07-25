@@ -13,33 +13,31 @@ class SendToKafka implements SendToKafkaInterface
 {
     private $crudMysql;
     private $serializer;
-    private $extraData;
 
-    public function __construct(CrudInterface $crudMysqli, SerializerInterface $serializer, ExtraDataInterface $extraData)
+    public function __construct(CrudInterface $crudMysqli, SerializerInterface $serializer)
     {
         $this->crudMysql = $crudMysqli;
         $this->serializer = $serializer;
-        $this->extraData = $extraData;
     }
 
-    public function sendToKafka()
+    public function sendToKafka($status, $topicName)
     {
         $this->KafkaConfig();
 
-        $producer = new Producer(function () {
+        $producer = new Producer(function () use($status, $topicName) {
 
-            return $this->prepareData();
+            return $this->prepareData($status, $topicName);
         });
 
         $producer->send(true);
     }
 
-    public function prepareData()
+    public function prepareData($topicName, $status)
     {
         //Add status
         $data = $this->serializer->serialize($this->crudMysql->getPainting(), 'json');
         $arr = json_decode($data, TRUE, 512, JSON_UNESCAPED_UNICODE);
-        $arr["status"] = $this->extraData->getStatus();
+        $arr["status"] = $status;
 
         //Add id
         if ($arr["status"] == "Deleted")
@@ -49,14 +47,9 @@ class SendToKafka implements SendToKafkaInterface
 
         $readyData = json_encode($arr);
 
-        return $this->producerReturn($readyData);
-    }
-
-    public function producerReturn($readyData)
-    {
         return [
-            [   'topic' => $this->extraData->getTopicName(),
-                'value' =>$readyData,
+            [   'topic' => $topicName,
+                'value' => $readyData,
                 'key' => '',
             ],
         ];
