@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductItemInterface} from '../../../entity/product-item-interface';
 import {ProductItem} from '../../../entity/product-item';
 import {ProductsService} from '../../../Services/products.service';
-
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-painting',
@@ -12,7 +12,7 @@ import {ProductsService} from '../../../Services/products.service';
 export class AddPaintingComponent implements OnInit {
   product: ProductItemInterface;
 
-  constructor(private service: ProductsService) {}
+  constructor(private service: ProductsService, private toastr: ToastrService) {}
 
   ngOnInit() {
   }
@@ -21,7 +21,7 @@ export class AddPaintingComponent implements OnInit {
   submitPainting(form) {
     const productItem: ProductItem = new ProductItem();
     productItem.setName(form.value.paintingName);
-    productItem.setArtist(form.value.artistName);
+    // productItem.setArtist(form.value.artistName);
     productItem.setCategory(form.value.style);
     productItem.setSize(form.value.size);
     productItem.setImageUrl(form.value.imgUrl);
@@ -30,6 +30,8 @@ export class AddPaintingComponent implements OnInit {
     console.log(productItem.toString());
     // Send the Json to Backend
     this.service.postProduct(productItem);
+
+    this.toastr.success('Hello world!', 'Toastr fun!');
   }
 
   setProductName(name: string) {

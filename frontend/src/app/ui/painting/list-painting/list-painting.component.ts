@@ -32,7 +32,6 @@ export class ListPaintingComponent implements OnInit {
     for (const aProduct of this.productList) {
       this.dropdownList.push(aProduct.size);
     }
-    
     // remove the repeatition
     this.dropdownList = [...new Set(this.dropdownList)];
   }

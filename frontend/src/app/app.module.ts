@@ -4,6 +4,8 @@ import {NgModule, NO_ERRORS_SCHEMA} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {FormsModule} from '@angular/forms';
+import {ToastrModule} from 'ngx-toastr';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
 import { ControllerModule } from './controller/controller.module';
@@ -34,6 +36,8 @@ import { ListPaintingComponent } from './ui/painting/list-painting/list-painting
     HttpClientModule,
     FormsModule,
     ControllerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

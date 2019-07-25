@@ -1,15 +1,13 @@
 <div class="d-flex justify-content-center">
     <div class="d-block col-6">
       <!-- Default form register -->
-      // #myform : the name of my form that use inside component
       <form class="text-center border border-light p-5 align-self-center" (ngSubmit)="submitPainting(myform)" #myform="ngForm">
   
         <p class="h4 mb-4">Add Painting</p>
   
         <!-- E-mail -->
-        form.value.paintingName    //this without ngModel will not work
         <input type="text" id="paintingName" name="paintingName" class="form-control mb-4" placeholder="Painting Name" ngModel >
-        <input type="text" id="artistName" name="artistName" class="form-control mb-4" placeholder="Artist Name" ngModel >
+        <!-- <input type="text" id="artistName" name="artistName" class="form-control mb-4" placeholder="Artist Name" ngModel > -->
         <input type="url" id="imgUrl" name="imgUrl" class="form-control mb-4" placeholder="Image Url" ngModel >
         <input type="text" id="size" name="size" class="form-control mb-4" placeholder="Image Size" ngModel >
         <input type="text" id="medium" name="medium" class="form-control mb-4" placeholder="Medium" ngModel >

@@ -1,26 +1,26 @@
 export class ProductItem {
   private id: number;
   private name: string;
-  private imageUrl: string;
+  private image_url: string;
   private description: string;
   private size: string;
   private medium: string;
   private category: string;
-  private artist: string;
+  // private artist: string;
 
   constructor() {
   }
 
-  getArtist(): string {
-    return this.artist;
-  }
+  // getArtist(): string {
+  //   return this.artist;
+  // }
 
   getName(): string {
     return this.name;
   }
 
   getImageUrl(): string {
-    return this.imageUrl;
+    return this.image_url;
   }
 
   getDescription(): string {
@@ -44,7 +44,7 @@ export class ProductItem {
   }
 
   setImageUrl(url: string) {
-    this.imageUrl = url;
+    this.image_url = url;
   }
 
   setDescription(desc: string) {
@@ -63,12 +63,13 @@ export class ProductItem {
     this.category = category;
   }
 
-  setArtist(artist: string) {
-    this.artist = artist;
-  }
+  // setArtist(artist: string) {
+  //   this.artist = artist;
+  // , Artist: ' + this.getArtist() + '
+  // }
 
   toString() {
-    return 'name: ' + this.getName() + ', Artist: ' + this.getArtist() + ', url: ' + this.getImageUrl()
+    return 'name: ' + this.getName() + ', url: ' + this.getImageUrl()
       + ', desc: ' + this.getDescription() + ', Size: ' + this.getSize() + ', Medium: ' + this.getMedium()
       + ', Category: ' + this.getCategory();
   }
