@@ -7,7 +7,9 @@ use App\Entity\ExtraDataInterface;
 use App\Repository\CrudInterface;
 use Kafka\Producer;
 use Kafka\ProducerConfig;
+use Symfony\Component\Filesystem\Exception\IOException;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Yaml\Yaml;
 
 class SendToKafka implements SendToKafkaInterface
 {
@@ -24,7 +26,7 @@ class SendToKafka implements SendToKafkaInterface
     {
         $this->KafkaConfig();
 
-        $producer = new Producer(function () use($status, $topicName) {
+        $producer = new Producer(function () use ($status, $topicName) {
 
             return $this->prepareData($status, $topicName);
         });
@@ -40,15 +42,14 @@ class SendToKafka implements SendToKafkaInterface
         $arr["status"] = $status;
 
         //Add id
-        if ($arr["status"] == "Deleted")
-        {
+        if ($arr["status"] == "Deleted") {
             $arr["id"] = (int)$this->crudMysql->getId();
         }
 
         $readyData = json_encode($arr);
 
         return [
-            [   'topic' => $topicName,
+            ['topic' => $topicName,
                 'value' => $readyData,
                 'key' => '',
             ],
@@ -57,12 +58,15 @@ class SendToKafka implements SendToKafkaInterface
 
     public function KafkaConfig()
     {
+
+        $yamlConfig = Yaml::parseFile('../config/kafka.yaml');
+
         $config = ProducerConfig::getInstance();
-        $config->setMetadataRefreshIntervalMs(10000);
-        $config->setMetadataBrokerList('127.0.0.1:9092');
-        $config->setBrokerVersion('1.0.0');
-        $config->setRequiredAck(1);
-        $config->setIsAsyn(false);
-        $config->setProduceInterval(500);
+        $config->setMetadataRefreshIntervalMs($yamlConfig['kafka']['MetadataRefreshIntervalMs']);
+        $config->setMetadataBrokerList($yamlConfig['kafka']['MetadataBrokerList']);
+        $config->setBrokerVersion($yamlConfig['kafka']['BrokerVersion']);
+        $config->setRequiredAck($yamlConfig['kafka']['RequiredAck']);
+        $config->setIsAsyn($yamlConfig['kafka']['IsAsync']);
+        $config->setProduceInterval($yamlConfig['kafka']['ProduceInterval']);
     }
 }

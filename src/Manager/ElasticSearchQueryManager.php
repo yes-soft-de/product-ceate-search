@@ -10,6 +10,7 @@ namespace App\Manager;
 
 use App\Mapper\ElasticQueryMapper;
 use App\Repository\ElasticSearchRepo;
+use Symfony\Component\Yaml\Yaml;
 
 class ElasticSearchQueryManager
 {
@@ -38,15 +39,7 @@ class ElasticSearchQueryManager
 
         // endregion
 
-        // region Create Query Client Based on REQUEST: {"query": "Mohammad Al Kalaleeb 24"}
-        $elasticQuery = new ElasticQueryMapper();
-        $elasticQuery->createIndexQuery('yes_final');
-
-        $keywords = explode(' ', $data["query"]);
-        foreach ($keywords as $value) {
-            $elasticQuery->addShouldQuery('name', $value);
-        }
-        // endregion
+        $elasticQuery = $this->prepareQuery($data['query']);
 
         $elasticSearchResult = $this->searchRepo->startSearching($elasticQuery->getFullQuery());
 
@@ -56,6 +49,20 @@ class ElasticSearchQueryManager
         ];
     }
 
+    private function prepareQuery($query)
+    {
+        $elasticConfig = Yaml::parseFile('../config/elastic.yaml');
+
+        $elasticQuery = new ElasticQueryMapper();
+        $elasticQuery->createIndexQuery($elasticConfig['elastic']['index_name']);
+
+        $keywords = explode(' ', $query);
+        foreach ($keywords as $value) {
+            $elasticQuery->addShouldQuery('name', $value);
+        }
+
+        return $elasticQuery;
+    }
 
     private function cleanResponse($response)
     {

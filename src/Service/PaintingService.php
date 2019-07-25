@@ -9,7 +9,8 @@
 namespace App\Service;
 
 use App\Enum\RequestType;
-use App\Manager\ValidateInterface;
+use App\Manager\ElasticSearchQueryManager;
+use App\Validator\ValidateInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use App\Repository\CrudInterface;
 use App\Event\KafkaEvent;
@@ -35,7 +36,7 @@ class PaintingService
     {
         // 1. Validate Request Using the Validator
         $validateResult = $this->validateRequest($request, RequestType::$REQUEST_CREATE);
-        if (true !== $validateResult) {
+        if ($validateResult != null) {
             return [
                 "status_code" => Response::HTTP_BAD_REQUEST,
                 "msg" => $validateResult
@@ -54,7 +55,7 @@ class PaintingService
     public function updatePainting(Request $request)
     {
         $validateResult = $this->validateRequest($request, RequestType::$REQUEST_UPDATE);
-        if (true !== $validateResult) {
+        if ($validateResult != null) {
             return [
                 "status_code" => Response::HTTP_BAD_REQUEST,
                 "msg" => $validateResult
@@ -73,7 +74,7 @@ class PaintingService
     public function deletePainting(Request $request)
     {
         $validateResult = $this->validateRequest($request, RequestType::$REQUEST_DELETE);
-        if (true !== $validateResult) {
+        if ($validateResult != null) {
             return [
                 "status_code" => Response::HTTP_BAD_REQUEST,
                 "msg" => $validateResult
@@ -92,6 +93,22 @@ class PaintingService
         ];
     }
 
+    public function searchPainting(Request $request)
+    {
+        $validationResult = $this->validate->validateNewRequest($request, RequestType::$REQUEST_SEARCH);
+        if ($validationResult != null) {
+            return [
+                "status_code" => Response::HTTP_BAD_REQUEST,
+                "msg" => $validationResult
+            ];
+        }
+        $QueryManager = new ElasticSearchQueryManager();
+        $resultData = $QueryManager->ProcessSearchRequest($request);
+
+        return $resultData;
+
+    }
+
     private function dispatch($topicName, $status)
     {
         $this->eventDispatcher->dispatch(new KafkaEvent($topicName, $status));
@@ -101,48 +118,11 @@ class PaintingService
     {
         /*
          * This Function Checks For Request and Validate,
-         *      If OK returns   : TRUE
+         *      If OK returns   : Null
          *      If not returns  : "<Error Message>"
          */
 
-        if ($type === RequestType::$REQUEST_CREATE) {
-            // 1. Validate Request Using the Validator
-            $requestValidate = $this->validate->requestValidator($request, RequestType::$REQUEST_CREATE);
-            if (true !== $requestValidate) {
-                return $requestValidate;
-            }
-            $validateResult = $this->validate->pantingValidator($request, RequestType::$REQUEST_CREATE);
-            if (!empty($validateResult)) {
-                return $validateResult;
-            }
-            return true;
-        }
-
-        if ($type === RequestType::$REQUEST_UPDATE) {
-            // 1. Validate Request Using the Validator
-            $requestValidate = $this->validate->requestValidator($request, RequestType::$REQUEST_UPDATE);
-            if (true !== $requestValidate) {
-                return $requestValidate;
-            }
-            $validateResult = $this->validate->pantingValidator($request, RequestType::$REQUEST_UPDATE);
-            if (!empty($validateResult)) {
-                return $validateResult;
-            }
-            return true;
-        }
-
-        if ($type === RequestType::$REQUEST_DELETE) {
-            // 1. Validate Request Using the Validator
-            $requestValidate = $this->validate->requestValidator($request, RequestType::$REQUEST_DELETE);
-            if (true !== $requestValidate) {
-                return $requestValidate;
-            }
-            $validateResult = $this->validate->pantingValidator($request, RequestType::$REQUEST_DELETE);
-            if (!empty($validateResult)) {
-                return $validateResult;
-            }
-            return true;
-        }
-        return 'This Request is Not Supported';
+        $validationResult = $this->validate->validateNewRequest($request, RequestType::$REQUEST_CREATE);
+        return $validationResult == null ? null : $validationResult;
     }
 }

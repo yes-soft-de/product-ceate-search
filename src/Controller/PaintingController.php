@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use App\Manager\ValidateInterface;
+use App\Manager\ElasticSearchQueryManager;
 use App\Repository\CrudInterface;
 use App\Service\PaintingService;
+use App\Validator\ValidateInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,6 +72,22 @@ class PaintingController extends BaseController
         $response = new JsonResponse($result, $result['status_code']);
         $response->headers->set('Access-Control-Allow-Origin', '*');
         return $response;
+    }
+
+    /**
+     * @Route("/painting/search", name="painting_search")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function search(Request $request)
+    {
+
+        $result = $this->paintingService->searchPainting($request);
+
+        $response = new JsonResponse($result, $result['status_code']);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+
     }
 
 }

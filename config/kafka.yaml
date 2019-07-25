@@ -1,0 +1,7 @@
+kafka:
+    MetadataRefreshIntervalMs: 10000
+    MetadataBrokerList: "127.0.0.1:9092"
+    BrokerVersion: "1.0.0"
+    RequiredAck: 1
+    IsAsync: false
+    ProduceInterval: 500
