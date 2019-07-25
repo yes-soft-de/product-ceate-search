@@ -23,3 +23,5 @@ tests/
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+architect.zip
