@@ -2,124 +2,92 @@
 
 namespace App\Controller;
 
+use App\Manager\ElasticSearchQueryManager;
 use App\Repository\CrudInterface;
-use App\Event\KafkaEvent;
-use App\Event\KafkaEventInterface;
-use App\Service\ValidateInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\PaintingService;
+use App\Validator\ValidateInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class PaintingController extends AbstractController
+class PaintingController extends BaseController
 {
-    private $crudMysql;
-    private $eventDispatcher;
-    private $kafkaEvent;
-    private $validate;
-    //private $paintingMapper;
+    private $paintingService;
 
-    public function __construct(CrudInterface $crudMysqli, EventDispatcherInterface $eventDispatcher, KafkaEventInterface $kafkaEvent, ValidateInterface $validate)
+    public function __construct(CrudInterface $crudMysqli, EventDispatcherInterface $eventDispatcher, ValidateInterface $validate)
     {
-        $this->crudMysql = $crudMysqli;
-        $this->eventDispatcher = $eventDispatcher;
-        $this->kafkaEvent = $kafkaEvent;
-        $this->validate = $validate;
-        //$this->paintingMapper = new PaintingMapper();
+        // TODO: Service Should Not Depend That Much on Controller But it's fine Now... =(
+        $this->paintingService = new PaintingService($crudMysqli, $eventDispatcher, $validate);
     }
 
     /**
-     * @Route("/createPainting", name="createPainting", methods={"post"})
+     * @Route("/painting/create", name="createPainting")
      * @return Response
      * @param Request $request
      */
     public function create(Request $request)
     {
-        // Mapping Request to Painting
-        // $painting = $this->paintingMapper->JsonToPainting($request->getContent());
-        // TODO: Call the Request Validator if OK then continue
-        // TODO: Create Manager to Handle this work if Validation was OK
-        // This Should be in a separate Service
+        // Main Job: Call the Painting Service, and Format the result
 
-        // Save to Mysql
-        $this->crudMysql->create($request);
+        $result = $this->paintingService->createPainting($request);
 
-        //Event (Kafka)
-        //$this->dispatch("yes", "New");
+        $response = new JsonResponse($result, $result['status_code']);
 
-        //Return
-        $result = "Create panting, success.";
-        $resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'text/plain']);
-        $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
-        return $resultResponse;
+        // For Local Server Accessibility
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+
+        return $response;
     }
 
     /**
-     * @Route("/updatePainting", name="updatePainting", methods={"put"})
+     * @Route("/painting/update", name="updatePainting")
      * @return Response
      * @param Request $request
      */
     public function update(Request $request)
     {
-        $validateResult = $this->validate->pantingValidator($request);
+        // Main Job: Call the Painting Service, and Format the result
 
-        if (!empty($validateResult))
-        {
-            $resultResponse = new Response($validateResult, Response::HTTP_OK, ['content-type' => 'application/json']);
-            $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
-            return $resultResponse;
-        }
+        $result = $this->paintingService->updatePainting($request);
 
-        //Save to Mysql
-        $this->crudMysql->update($request);
+        $response = new JsonResponse($result, $result['status_code']);
 
-        //Event (Kafka)
-        //$this->dispatch("yes", "Updated");
+        // For Local Server Accessibility
+        $response->headers->set('Access-Control-Allow-Origin', '*');
 
-        //Return
-        $result = "Update panting, success.";
-        $resultResponse = new Response($result, Response::HTTP_OK, ['content-type' => 'application/json']);
-        $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
-        return $resultResponse;
+        return $response;
     }
 
     /**
-     * @Route("/deletePainting", name="deletePainting", methods={"delete"})
+     * @Route("/painting/delete", name="deletePainting")
      * @return Response
      * @param Request $request
      */
     public function delete(Request $request)
     {
-        $validateResult = $this->validate->pantingValidator($request);
-
-        if (!empty($validateResult))
-        {
-            $resultResponse = new Response($validateResult, Response::HTTP_OK, ['content-type' => 'application/json']);
-            $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
-            return $resultResponse;
-        }
-
-        //delete from Mysql
-        $this->crudMysql->delete($request);
-
-        //Event (Kafka)
-        //$this->dispatch("yes", "Deleted");
-
-        //Return
-        $data = json_decode($request->getContent(), true);
-        $id = $data["id"];
-        $resultResponse = new Response('Deleting painting id: '.$id.' Success',
-            Response::HTTP_OK, ['content-type' => 'application/json']);
-        $resultResponse->headers->set('Access-Control-Allow-Origin', '*');
-        return $resultResponse;
+        $result = $this->paintingService->deletePainting($request);
+        $response = new JsonResponse($result, $result['status_code']);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
     }
 
-    public function dispatch($topicName, $status)
+    /**
+     * @Route("/painting/search", name="painting_search")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function search(Request $request)
     {
-        $this->kafkaEvent->setTopicName($topicName);
-        $this->kafkaEvent->setStatus($status);
-        $this->eventDispatcher->dispatch(KafkaEvent::NAME);
+
+        $result = $this->paintingService->searchPainting($request);
+
+        $response = new JsonResponse($result, $result['status_code']);
+        $response->headers->set('Access-Control-Allow-Origin', '*');
+        return $response;
+
     }
+
 }

@@ -17,10 +17,10 @@ class PaintingMapper
 
     public function __construct()
     {
-        $this->painting = new Painting();
+        //$this->painting = new Painting();
     }
 
-    public function JsonToPainting($data){
+    public function JsonToPainting($data, Painting $panting){
         //Get data
         $name = $data["name"];
         $image_url = $data["image_url"];
@@ -29,15 +29,15 @@ class PaintingMapper
         $medium = $data["medium"];
         $category = $data["category"];
 
-        $this->painting = new Painting();
+        //$this->painting = new Painting();
 
-        $this->painting->setName($name)
+        $panting->setName($name)
             ->setImageUrl(@$image_url)
             ->setDescription($description)
             ->setMedium($medium)
             ->setCategory($category)
             ->setSize($size);
 
-        return $this->painting;
+        return $panting;
     }
 }

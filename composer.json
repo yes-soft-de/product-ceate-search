@@ -11,6 +11,7 @@
         "nelmio/cors-bundle": "^1.5",
         "nmred/kafka-php": "0.2.*",
         "sensio/framework-extra-bundle": "^5.4",
+        "symfony/config": "4.3.*",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
         "symfony/event-dispatcher": "4.3.*",

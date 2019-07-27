@@ -6,7 +6,6 @@
 /public/bundles/
 /var/
 /vendor/
-.env
 .env.test
 tests/
 ###< symfony/framework-bundle ###
@@ -23,3 +22,5 @@ tests/
 .phpunit
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+architect.zip

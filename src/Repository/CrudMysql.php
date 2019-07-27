@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Painting;
 use App\Mapper\PaintingMapper;
 use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Component\HttpFoundation\Request;
 
 class CrudMysql implements CrudInterface
@@ -16,6 +17,7 @@ class CrudMysql implements CrudInterface
 
     public function __construct(EntityManagerInterface $entityManagerInterface)
     {
+        $this->painting = new Painting();
         $this->entityManager = $entityManagerInterface;
         $this->paintingMapper = new PaintingMapper();
     }
@@ -25,16 +27,16 @@ class CrudMysql implements CrudInterface
         return $this->painting;
     }
 
-    public function getSetData(Request $request)
+    public function getSetData(Request $request, $panting)
     {
         // Allocate JSON Object
         $data = json_decode($request->getContent(), true);
-        $this->painting = $this->paintingMapper->JsonToPainting($data);
+        $this->painting = $this->paintingMapper->JsonToPainting($data, $panting);
     }
 
     public function create(Request $request)
     {
-        $this->getSetData($request);
+        $this->getSetData($request, $this->painting);
 
         $this->entityManager->persist($this->painting);
         $this->entityManager->flush();
@@ -46,7 +48,7 @@ class CrudMysql implements CrudInterface
         $id = $data["id"];
         $this->painting = $this->entityManager->getRepository(Painting::class)->find($id);
 
-        $this->getSetData($request);
+        $this->getSetData($request, $this->painting);
 
         $this->entityManager->flush();
     }
