@@ -24,7 +24,7 @@ Search using ElasticSearch
 
 	```
     php bin/console doctrine:database:create
- 	php bin/console make:migration
+	 	php bin/console make:migration
     php bin/console doctrine:migrations:migrate
    ```
 	
@@ -44,6 +44,12 @@ This API is used to create Paintings in the cloud
 
 ```
 http://localhost:8000/painting/create
+```
+
+##### Method:
+
+```
+POST
 ```
 
 ##### Request 
@@ -78,6 +84,12 @@ This API is used to update existing paintings
 http://localhost:8000/painting/update
 ```
 
+##### Method
+
+```
+PUT
+```
+
 ##### Request:
 
 ```json
@@ -109,6 +121,12 @@ http://localhost:8000/painting/update
 http://localhost:8000/painting/delete
 ```
 
+##### Method
+
+```
+DELETE
+```
+
 ##### Request:
 
 ```json
@@ -134,6 +152,12 @@ http://localhost:8000/painting/delete
 
 ```
 http://localhost:8000/painting/search
+```
+
+##### Method
+
+```
+POST
 ```
 
 ##### Request:
